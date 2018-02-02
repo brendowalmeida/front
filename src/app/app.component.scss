@@ -1,0 +1,9 @@
+.body {
+    height: 100%;
+    background-image: -ms-radial-gradient(center, ellipse closest-corner, #704b74 0%, #4B294C 70%);/* IE10+ */
+    background-image: -moz-radial-gradient(center, ellipse closest-corner, #704b74 0%, #4B294C 70%);/* Firefox */ 
+    background-image: -o-radial-gradient(center, ellipse closest-corner, #704b74 0%, #4B294C 70%);/* Opera */
+    background-image: -webkit-gradient(radial, center center, 0, center center, 286, color-stop(0, #704b74), color-stop(70, #4B294C));/* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-radial-gradient(center, ellipse closest-corner, #704b74 0%, #4B294C 70%); /* Webkit (Chrome 11+) */ 
+    background-image: radial-gradient(ellipse closest-corner at center, #704b74 0%, #4B294C 70%);
+}
