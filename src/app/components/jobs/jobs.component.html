@@ -1,0 +1,62 @@
+<div class="row container">
+  <div class="col-md-12 box-shadow center border-center">
+    <div class="header gradient border-header">
+      <div class="title">Jobs Listing</div>
+      <div class="logout">
+        <a routerLink="/login">Logout</a>
+      </div>
+    </div>
+
+    <div class="form">
+      <mat-form-field class="search">
+        <input matInput type="text" placeholder="Search Jobs" [(ngModel)]="search" (ngModelChange)="onChange($event)" (keydown)="onKeyPress($event)">
+        <i class="material-icons color-icon" matSuffix>search</i>
+      </mat-form-field>
+    </div>
+    
+
+    <div class="filter">
+      <button (click)="searchJobs()" class="button-filter">Search</button>
+    </div>
+
+    <div class="loading-spinner" *ngIf="showLoad">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="no-data" *ngIf="showNoData">
+        <i class="material-icons">sentiment_very_dissatisfied</i>
+        <p>Sorry, we did not find any jobs.</p>
+    </div>
+
+    <div class="list" [hidden]="hideTable">
+      <div class="table-container">
+        <table class="table table-striped">
+          <thead>
+            <tr class="header-title">
+              <th matTooltip="Position of the job." matTooltipPosition="above">Position</th>
+              <th matTooltip="Organization that is offering the job." matTooltipPosition="above">Organization</th>
+              <th matTooltip="The minimum salary for the job." matTooltipPosition="above">Minimum</th>
+              <th matTooltip="The maximum salary for the job." matTooltipPosition="above">Maximum</th>
+              <th matTooltip="The start is when the job was posted." matTooltipPosition="above">Start</th>
+              <th matTooltip="The end date is when the job will close." matTooltipPosition="above">End</th>
+              <th matTooltip="The location is the place to work." matTooltipPosition="above">Locations</th>
+              <th matTooltip="Click on the icon to see more details of the job." matTooltipPosition="above">See more</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let job of listJobs" class="info-rows">
+              <td class="align-middle" [matTooltip]="job.position_title" matTooltipPosition="below">{{job.position_title | truncate:[45, '...'] }}</td>
+              <td class="align-middle" [matTooltip]="job.organization_name" matTooltipPosition="below">{{ job.organization_name | truncate:[20, '...'] }}</td>
+              <td class="text-center align-middle">{{ job.minimum | currency}}</td>
+              <td class="text-center align-middle">{{ job.maximum | currency}}</td>
+              <td class="text-center align-middle">{{ job.start_date | date: 'MM/dd/yyyy'}}</td>
+              <td class="text-center align-middle">{{ job.end_date | date: 'MM/dd/yyyy' }}</td>
+              <td class="align-middle">{{ job.locations }}</td>
+              <td class="text-center align-middle"><a href="{{job.url}}" target="_blank"><i class="material-icons">touch_app</i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
